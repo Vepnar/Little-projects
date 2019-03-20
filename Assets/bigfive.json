@@ -1,0 +1,236 @@
+{
+  "traits": [
+    {
+      "name": "Openness to experience",
+      "description": "Openness is a general appreciation for art, emotion, adventure, unusual ideas, imagination, curiosity, and variety of experience. People who are open to experience are intellectually curious, open to emotion, sensitive to beauty and willing to try new things."
+    },
+    {
+      "name": "Conscientiousness",
+      "description": "Conscientiousness is a tendency to display self-discipline, act dutifully, and strive for achievement against measures or outside expectations."
+    },
+    {
+      "name": "Extraversion",
+      "description": "Extraversion is characterized by breadth of activities (as opposed to depth), surgency from external activity/situations, and energy creation from external means."
+    },
+    {
+      "name": "Agreeableness",
+      "description": "The agreeableness trait reflects individual differences in general concern for social harmony. Agreeable individuals value getting along with others. They are generally considerate, kind, generous, trusting and trustworthy, helpful, and willing to compromise their interests with others. Agreeable people also have an optimistic view of human nature."
+    },
+    {
+      "name": "Neuroticism",
+      "description": "Neuroticism is the tendency to experience negative emotions, such as anger, anxiety, or depression. It is sometimes called emotional instability"
+    }
+  ],
+  "questions": [
+    {
+      "question": "I have excellent ideas.",
+      "trait": 0,
+      "reversed": false
+    },
+    {
+      "question": "I am quick to understand things.",
+      "trait": 0,
+      "reversed": false
+    },
+    {
+      "question": "I use difficult words.",
+      "trait": 0,
+      "reversed": false
+    },
+    {
+      "question": "I am full of ideas.",
+      "trait": 0,
+      "reversed": false
+    },
+    {
+      "question": "I am not interested in abstractions.",
+      "trait": 0,
+      "reversed": true
+    },
+    {
+      "question": "I do not have a good imagination.",
+      "trait": 0,
+      "reversed": true
+    },
+    {
+      "question": "I have difficulty understanding abstract ideas.",
+      "trait": 0,
+      "reversed": true
+    },
+    {
+      "question": "I always am prepared.",
+      "trait": 1,
+      "reversed": false
+    },
+    {
+      "question": "I pay attention to details.",
+      "trait": 1,
+      "reversed": false
+    },
+    {
+      "question": "I get chores done right away.",
+      "trait": 1,
+      "reversed": false
+    },
+    {
+      "question": "I like order.",
+      "trait": 1,
+      "reversed": false
+    },
+    {
+      "question": "I follow a schedule.",
+      "trait": 1,
+      "reversed": false
+    },
+    {
+      "question": "I am exacting in my work",
+      "trait": 1,
+      "reversed": false
+    },
+    {
+      "question": "I leave my belongings around.",
+      "trait": 1,
+      "reversed": true
+    },
+    {
+      "question": "I make a mess of things.",
+      "trait": 1,
+      "reversed": true
+    },
+    {
+      "question": "I often forget to put things back in their proper place.",
+      "trait": 1,
+      "reversed": true
+    },
+    {
+      "question": "I shirk my duties.",
+      "trait": 1,
+      "reversed": true
+    },
+    {
+      "question": "I am the life of the party.",
+      "trait": 2,
+      "reversed": false
+    },
+    {
+      "question": "I don't mind being the center of attention.",
+      "trait": 2,
+      "reversed": false
+    },
+    {
+      "question": "I feel comfortable around people.",
+      "trait": 2,
+      "reversed": false
+    },
+    {
+      "question": "I start conversations.",
+      "trait": 2,
+      "reversed": false
+    },
+    {
+      "question": "I don't talk a lot.",
+      "trait": 2,
+      "reversed": true
+    },
+    {
+      "question": "I think a lot before I speak or act.",
+      "trait": 2,
+      "reversed": true
+    },
+    {
+      "question": "I am quiet around strangers.",
+      "trait": 2,
+      "reversed": true
+    },
+    {
+      "question": "I have no intentions of talking in large crowds.",
+      "trait": 2,
+      "reversed": true
+    },
+    {
+      "question": "I am interested in people.",
+      "trait": 3,
+      "reversed": false
+    },
+    {
+      "question": "I sympathize with others' feelings.",
+      "trait": 3,
+      "reversed": false
+    },
+    {
+      "question": "I have a soft heart.",
+      "trait": 3,
+      "reversed": false
+    },
+    {
+      "question": "I take time out for others.",
+      "trait": 3,
+      "reversed": false
+    },
+    {
+      "question": "I feel others' emotions.",
+      "trait": 3,
+      "reversed": false
+    },
+    {
+      "question": "I make people feel at ease.",
+      "trait": 3,
+      "reversed": false
+    },
+    {
+      "question": "I am not really intrested in others.",
+      "trait": 3,
+      "reversed": true
+    },
+    {
+      "question": "I insult people.",
+      "trait": 3,
+      "reversed": true
+    },
+    {
+      "question": "I am not interested in other people's problems.",
+      "trait": 3,
+      "reversed": true
+    },
+    {
+      "question": "I feel little concern for others.",
+      "trait": 3,
+      "reversed": true
+    },
+    {
+      "question": "I get irritated easily.",
+      "trait": 4,
+      "reversed": false
+    },
+    {
+      "question": "I get stressed out easily.",
+      "trait": 4,
+      "reversed": false
+    },
+    {
+      "question": "I get upset easily.",
+      "trait": 4,
+      "reversed": false
+    },
+    {
+      "question": "I have frequent mood swings.",
+      "trait": 4,
+      "reversed": false
+    },
+    {
+      "question": "I am much more anxious than most people.",
+      "trait": 4,
+      "reversed": false
+    },
+    {
+      "question": "I am relaxed most of the time.",
+      "trait": 4,
+      "reversed": true
+    },
+    {
+      "question": "I seldom feel blue.",
+      "trait": 4,
+      "reversed": true
+    }
+  ]
+}
