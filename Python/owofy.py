@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+'''
+    Author: Arjan de Haan (Vepnar)
+'''
+
 import re
 import random
 
