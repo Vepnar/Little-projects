@@ -1,6 +1,6 @@
 /*
     Author: Arjan de Haan (Vepnar)
-    Please ignore this file
+    Please, ignore this file
 
 */
 

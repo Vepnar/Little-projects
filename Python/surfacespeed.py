@@ -6,7 +6,7 @@
 
 '''
 
-from math import pi , radians, sin,cos
+from math import pi , radians, sin
 from urllib.request import urlopen
 
 EARTH_EQUATOR = 6371000 # meters
