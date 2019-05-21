@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# Author: Arjan de Haan (Vepnar)
+
 from PIL import Image
 import numpy as np
-
 
 # Default width, height & background colour  of the generated image
 WIDTH = 1024

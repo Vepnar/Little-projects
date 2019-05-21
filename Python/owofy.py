@@ -1,15 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-'''
-    Author: Arjan de Haan (Vepnar)
-'''
+#    Author: Arjan de Haan (Vepnar)
 
 import re
 import random
 
 # Use at your own risk
-
+# Source of emoticons: https://en.wikipedia.org/wiki/List_of_emoticons
 faces = ['(・`ω´・)', ';;w;;', 'owo', 'OwO','>.<', 'uwu', '( ˘͈ ᵕ ˘͈♡)','UwU', '>w<', '^w^','>.>', '(つ✧ω✧)つ', '(/ =ω=)/']
 
 def owofy(msg):
@@ -26,5 +23,4 @@ def owofy(msg):
 if __name__ == '__main__':
     import sys
     args = ' '.join(sys.argv[1:])
-
-print(owofy(args))
+    print(owofy(args))

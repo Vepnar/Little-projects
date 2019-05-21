@@ -1,35 +1,39 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''
-    Author: Arjan de Haan (Vepnar)
-    
-    The bigfive.json is stored in ../Assets/bigfive.json
-
-    requirements: colorama
-'''
+#
+#    Author: Arjan de Haan (Vepnar)
+#   
+#    The bigfive.json is stored in ../Assets/bigfive.json
+#    Questions are based on the examples on wikipedia
+#    See: https://en.wikipedia.org/wiki/Big_Five_personality_traits
+#
+#    requirements: colorama
+#
 
 import os
 import json
 import random
 from colorama import init, Fore, Style
 
-QUESTION_INFO = 'Give a score how much you agree with the following statement'.format(
-    fore=Fore, style=Style
-)
+# Static messages used for displaying infomation
 
-QUESTION_SCORE = '{style.BRIGHT}Possible answers:{style.RESET_ALL} {fore.GREEN}10{fore.RESET} Agree, {fore.YELLOW}5{fore.RESET} Neutral, {fore.RED}1{fore.RESET} Disagree{style.RESET_ALL}'.format(
-    fore=Fore, style=Style
-)
+QUESTION_INFO = 'Give a score how much you agree with the \
+    following statement'.format(fore=Fore, style=Style)
+
+QUESTION_SCORE = '{style.BRIGHT}Possible answers:{style.RESET_ALL} \
+    {fore.GREEN}10{fore.RESET} Agree, {fore.YELLOW}5{fore.RESET} \
+    Neutral, {fore.RED}1{fore.RESET} \
+    Disagree{style.RESET_ALL}'.format(
+    fore=Fore, style=Style)
+
 INPUT_MESSAGE = '{style.BRIGHT}Your answer >> '.format(
-    fore=Fore, style=Style
-)
+    fore=Fore, style=Style)
 
-TRAIT_STRING = '{style.BRIGHT}{name}: {style.RESET_ALL}{score}%\n{style.DIM}{desc}{style.RESET_ALL}'
+TRAIT_STRING = '{style.BRIGHT}{name}: \
+    {style.RESET_ALL}{score}%\n{style.DIM}{desc}{style.RESET_ALL}'
 
-print(QUESTION_INFO)
-print(QUESTION_SCORE)
-
+# Store different trait types
 class Trait:
     def __init__(self, name, description):
         self.name = name
@@ -46,6 +50,7 @@ class Trait:
             desc=self.description,score=int(self.value)
         ))
 
+# Store questions as class with specified information about the questions
 class Question:
     def __init__(self, question, trait, reversed_question=False):
         self.question = question
@@ -73,6 +78,7 @@ class Question:
             self.trait.update(value)
             break
 
+# Parse traits from a json file
 def parse_traits(json_data):
     data = json_data['traits']
 
@@ -84,6 +90,7 @@ def parse_traits(json_data):
 
     return traits
 
+# Parse questions from a json file with a possiblity to randomize the questions
 def parse_questions(json_data,traits,randomize=True):
     data = json_data['questions']
 
@@ -113,10 +120,3 @@ if __name__ == '__main__':
 
     for trait in traits:
         print(trait)    
-
-
-    
-
-
-
-

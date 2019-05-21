@@ -1,18 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''
-    Author: Arjan de Haan (Vepnar)
+#    Author: Arjan de Haan (Vepnar)
+#    requirements: matplotlib
 
-    requirements: matplotlib
-'''
 
 from math import radians, cos, sin
 import matplotlib.pyplot as plt
 
-g = 9.80 # m/s
-v = 200 # m/s
+# Default settings
+g = 9.80 # Grafity m/s
+v = 200 # Velocity m/s
 
+# Calculate displacement based on a number of variables
+# See: https://en.wikipedia.org/wiki/Projectile_motion
 def displacement(a,t,v):
     a = radians(a)
     x = v*t*cos(a)
@@ -20,6 +21,7 @@ def displacement(a,t,v):
 
     return x,y
 
+# Make the angle visible in a plot
 def plot_angle(a):
     x, y, t = [],[],0
     while True:
@@ -32,7 +34,7 @@ def plot_angle(a):
     plt.plot(x,y)
 
 if __name__ == '__main__':
-    angles = [20, 45, 75]
+    angles = [75.32970921248814, 89.98596253345757]
     
     for angle in angles:
         plot_angle(angle)
