@@ -13,9 +13,9 @@ def owofy(msg):
     face =' '+faces[random.randint(0,len(faces)-1)]
     msg = re.sub(r'(?:l|r)', 'w',msg)
     msg = re.sub(r'(?:L|R)', 'W',msg)
-    msg = re.sub(r'n([aeiou])','ny$1',msg)
-    msg = re.sub(r'N([aeiou])','ny$1',msg)
-    msg = re.sub(r'N([AEIOU])','ny$1',msg)
+    msg = re.sub(r'n([aeiou])','ny',msg)
+    msg = re.sub(r'N([aeiou])','ny',msg)
+    msg = re.sub(r'N([AEIOU])','ny',msg)
     msg = re.sub(r'ove','uv',msg)
 
     return re.sub(r'!+',face,msg)
