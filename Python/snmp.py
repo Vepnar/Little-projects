@@ -3,6 +3,7 @@
 # Author: Arjan de Haan (Vepnar)
 # Target device: HP Switch 3500yl-24G (J8692A)
 # Status: Smooth doesn't work yet
+# This piece of code should visualize internet usage live
 
 # Requirements
 # matplotlib==3.1.1
@@ -110,9 +111,12 @@ def main():
         # Calculate new values based on recieved information
         new_down, new_up = recieve_values()
 
-        # Calculate values
+        # Calculate values and converts them to kilobytes
         calc_down, calc_up = (new_down - last_down) / \
             1000, (new_up - last_up)/1000
+        
+        # It overflows sometimes and thows a huge negative spike
+        # We don't want that here
         calc_down = calc_down if 0 < calc_down else 0
         calc_up = calc_up if 0 < calc_up else 0
         i += 1
