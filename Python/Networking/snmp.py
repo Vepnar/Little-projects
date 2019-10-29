@@ -11,7 +11,7 @@
 # pysnmp==0.3.4
 
 from pysnmp.entity.rfc3413.oneliner import cmdgen
-from scipy.ndimage.filters import gaussian_filter1d
+from scipy.interpolate import make_interp_spline
 import matplotlib.pyplot as plt
 import numpy as np
 import time
