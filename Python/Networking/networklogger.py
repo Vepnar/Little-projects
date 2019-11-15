@@ -1,3 +1,8 @@
+#!/usr/bin/python3.6
+# -*- coding: utf-8 -*-
+# Author: Arjan de Haan (Vepnar)
+# This SHOULD track any data usage on a selected interface and store the information in a sqlite3 database
+
 import re
 import time
 import os.path

@@ -1,5 +1,5 @@
 // Author: Arjan de Haan (Vepnar)
-// This is some script that will test that will measure how fast you can solve basic math problems 
+// This is some script that will test that will measure how fast you can solve basic math equations 
 
 #include <iostream>
 #include <string>
