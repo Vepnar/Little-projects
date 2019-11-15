@@ -1,6 +1,9 @@
-.vscode
-a.out
+# Hidden directories
 __pycache__
+__hide__
 
+# Hidden files
 *.sqlite
 *.db
+.vscode
+a.out
