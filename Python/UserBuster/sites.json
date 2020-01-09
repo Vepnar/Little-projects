@@ -1,0 +1,69 @@
+[
+    {
+        "name" : "Reddit",
+        "domain": "https://www.reddit.com/user/{username}",
+        "validationType": "status_code",
+        "response": 200
+    },
+    {
+        "name" : "Twitter",
+        "domain" : "https://twitter.com/{username}/",
+        "validationType" : "status_code",
+        "response" : 200
+    },
+    {
+        "name" : "Steam",
+        "domain" : "https://steamcommunity.com/id/{username}/",
+        "validationType" : "not_regex_contains",
+        "response" : "<h1>Sorry!</h1>"
+    },
+    {
+        "name" : "Tumblr",
+        "domain" : "https://{username}.tumblr.com/",
+        "validationType" : "status_code",
+        "response" : 200
+    },
+    {
+        "name" : "Instagram",
+        "domain" : "https://www.instagram.com/{username}/",
+        "validationType" : "status_code",
+        "response" : 200
+    },
+    {
+        "name" : "Youtube",
+        "domain" : "https://www.youtube.com/{username}",
+        "validationType" : "status_code",
+        "response" : 200
+    },
+    {
+        "name" : "Github",
+        "domain" : "https://github.com/{username}",
+        "validationType" : "status_code",
+        "response" : 200
+    },
+    {
+        "name" : "Spotify",
+        "domain" : "https://open.spotify.com/user/{username}",
+        "validationType" : "status_code",
+        "response" : 200
+    },
+    {
+        "name" : "Deviantart",
+        "domain" : "https://{username}.deviantart.com",
+        "validationType" : "status_code",
+        "response" : 200
+    },
+    {
+        "name" : "SoundCloud",
+        "domain" : "https://soundcloud.com/{username}",
+        "validationType" : "status_code",
+        "response" : 200
+    },
+    {
+        "name" : "Pinterest",
+        "domain" : "https://www.pinterest.com/{username}/",
+        "validationType" : "not_status_code",
+        "response" : 404
+    }
+
+]
