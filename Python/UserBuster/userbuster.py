@@ -4,13 +4,14 @@
 bust usernames of a given user easy and async, dont execute this script on me please :)
 Author: Arjan de Haan (Vepnar)
 Lasted edited: 9 January 2020
-Version: 0.1
+Version: 0.2
 """
 import re
 import json
 import random
 import argparse
 import grequests
+import requests
 
 HEADERS = [
     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36',
@@ -23,6 +24,7 @@ HEADERS = [
     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36',
     'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36',
     'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0']
+
 class Website:
     """Class to store sites
     args:
@@ -41,21 +43,25 @@ class Website:
             'not_regex_contains' : self._not_regex_contains
         }
 
-        self.process_response = switcher[json_object['validationType']]
+        self._processor = switcher[json_object['validationType']]
+
+    def process_response(self, response, **kwargs):
+        """Pre processor"""
+        self._confirmed = self._processor(response)
 
     def _status_code(self, response):
         """Check if the status code is the same"""
-        self._confirmed = response.status_code == self._response
+        return response.status_code == self._response
 
     def _not_status_code(self, response):
         """Check if the status code is not the same"""
-        self._confirmed = response.status_code is not self._response
+        return response.status_code is not self._response
     def _regex_contains(self, response):
         """Check is there is a match"""
-        self._confirmed = re.search(self._response, response.text) is not None
+        return re.search(self._response, response.text) is not None
     def _not_regex_contains(self, response):
         """Check if  there is not a match"""
-        self._confirmed = re.search(self._response, response.text) is None
+        return re.search(self._response, response.text) is None
 
     def get_domain(self, username):
         """Receive domain with formatted username in it"""
@@ -99,7 +105,7 @@ def receive_async(websites, username):
     async_list = []
     for website in websites:
         action_item = grequests.get(
-            website.get_domain(username), hooks={'response' : website.process_response},
+            website.get_domain(username), hooks={'response' :  website.process_response},
             headers=get_random_headers(), allow_redirects=False)
         async_list.append(action_item)
 
@@ -111,16 +117,43 @@ def receive_async(websites, username):
         if domain is not None:
             sites.append(domain)
     return sites
+    
+def receive_sync(websites, username):
+    """Run sync through all the websites and check if the user exists
+
+    Returns: list of strings with existing websites (username formatting into the string)
+    """
+    async_list = []
+    for website in websites:
+        action_item = requests.get(
+            website.get_domain(username), hooks={'response' :  website.process_response},
+            headers=get_random_headers(), allow_redirects=False)
+        async_list.append(action_item)
+
+    sites = []
+    for website in websites:
+        domain = website.get_if_exists(username)
+        if domain is not None:
+            sites.append(domain)
+    return sites
 
 def main():
     """Main function that will run when this script is run"""
-    parser = argparse.ArgumentParser(description='Try to find all accounts matching the given name')
+    parser = argparse.ArgumentParser(
+        description='Try to find all accounts matching the given name')
     parser.add_argument(
         'username', metavar='username', type=str, help='username without spaces')
+    parser.add_argument(
+        '-s', '--sync', action='store_true', help="run everything sync instead of async")
+    parser.add_argument(
+        '-w', '--website', type=str, default="sites.json", help="set a website file")
     args = parser.parse_args()
 
-    sites = websites_from_json()
-    exist = receive_async(sites, args.username)
+    sites = websites_from_json(file_path=args.website)
+    if args.sync:
+        exist = receive_sync(sites, args.username)
+    else:
+        exist = receive_async(sites, args.username)
 
     for site in exist:
         print(site)
