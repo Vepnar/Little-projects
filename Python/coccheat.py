@@ -40,7 +40,7 @@ class CocControler:
     def _move_y(self, y):
         """Move Y to a certain location"""
         offset_min = int(self.screen_y * self.offset)
-
+        step_size = offset_min * 2
         # Don't move the cursor
         if y == self._y:
             pass
@@ -49,28 +49,28 @@ class CocControler:
             # Don't use this to return to the 0,0 location
             c = self._y
             self._y = 0
-            for _ in range(c // offset_min):
-                self._small_y(offset_min)
-            self._small_y(c % offset_min)
+            for _ in range(c // step_size):
+                self._small_y(step_size)
+            self._small_y(c % step_size)
 
         elif y < self._y:
             c = y - self._y
             self._y -= y
-            for _ in range(c // offset_min):
-                self._small_y(offset_min)
-            self._small_y(c % offset_min)
+            for _ in range(c // step_size):
+                self._small_y(step_size)
+            self._small_y(c % step_size)
 
         elif y > self._y:
             c = self._y + y
             self._y += y
-            for _ in range(c // offset_min):
-                self._small_y(- offset_min)
-            self._small_y(-(c % offset_min))
+            for _ in range(c // step_size):
+                self._small_y(- step_size)
+            self._small_y(-(c % step_size))
 
     def _move_x(self, x):
         """Move Y to a certain location"""
         offset_min = int(self.screen_x * self.offset)
-
+        step_size = offset_min * 3
         # When no movement is required
         if x == self._x:
             pass
@@ -78,16 +78,16 @@ class CocControler:
         elif x == 0:
             c = self._x
             self._x = 0
-            for _ in range(c // offset_min):
-                self._small_x(offset_min)
-            self._small_x(c % offset_min)
+            for _ in range(c // step_size):
+                self._small_x(step_size)
+            self._small_x(c % step_size)
 
         elif x < self._x:
             c = x - self._x
             self._x -= x
-            for _ in range(c // offset_min):
-                self._small_x(offset_min)
-            self._small_x(c % offset_min)
+            for _ in range(c // step_size):
+                self._small_x(step_size)
+            self._small_x(c % step_size)
 
         elif x > self._x:
             c = self._x + x
@@ -162,7 +162,7 @@ def main():
         coc.reset(r=1)
         coc.click(1000, 1300)
         coc.reset(r=2)
-        coc.click(1400, 1300)
+        coc.click(1350, 1300)
         coc.reset(r=2)
         sleep(10)
 
