@@ -1,0 +1,16 @@
+if profile_picture
+    .center.mb-5
+        img.picture(src="{{ profile_picture }}")
+    br
+
+span.capitilized Personalia
+
+if contact_info
+    for item in contact_info
+        .flex-container.mt-1
+            i(class="fa fa-{{item.icon}} mr-2")
+            div
+                span.text-hightlight= item.title
+                for value in item.value
+                    br
+                    span= value
