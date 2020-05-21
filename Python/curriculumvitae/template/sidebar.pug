@@ -1,5 +1,5 @@
 if profile_picture
-    .center.mb-5
+    .center.mb-3
         img.picture(src="{{ profile_picture }}")
     br
 
@@ -8,9 +8,26 @@ span.capitilized Personalia
 if contact_info
     for item in contact_info
         .flex-container.mt-1
-            i(class="fa fa-{{item.icon}} mr-2")
+            i(class="fa fa-{{item.icon}} mr-2 mt-1")
             div
                 span.text-hightlight= item.title
                 for value in item.value
                     br
-                    span= value
+                    span.lato= value
+    br
+
+if interests:
+    span.capitilized Intresses
+    ul
+        for item in interests
+            li.ml-4.mt-1
+                span.lato= item
+
+    br
+
+if languages:
+    span.capitilized Talen
+    ul
+        for item in languages
+            li.ml-4.mt-1
+                span.lato= item

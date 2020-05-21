@@ -3,7 +3,6 @@ import json
 import jinja2
 
 import pdfkit
-import weasyprint
 from sass import compile
 
 # Access jinja2 enviroment with the PUG plugin
@@ -33,7 +32,7 @@ def compile_sass(input_file, output_file):
 if __name__ == '__main__':
     
     # Read settings from json file.
-    with open('cv.json','r') as setting_file:
+    with open('./cv.json','r+') as setting_file:
         settings = json.load(setting_file)
 
     # Compile SASS files to CSS.
@@ -42,7 +41,7 @@ if __name__ == '__main__':
     # Convert pug files to one html file
     with open(COMPILED_DIR + 'cv.html', 'w+') as file:
         template = ENV.get_template('cv.pug')
-    file.write(template.render(**settings))
+        file.write(template.render(**settings))
 
     # Convert html file to pdf
     pdfkit.from_file(COMPILED_DIR + 'cv.html', 'cv.pdf')
