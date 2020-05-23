@@ -15,6 +15,7 @@ ENV = jinja2.Environment(
 COMPILED_DIR = f'.{os.path.sep}compiled{os.path.sep}'
 TEMPLATE_DIR = f'.{os.path.sep}template{os.path.sep}'
 
+
 def compile_sass(input_file, output_file):
     """Compile all found Sass/SCSS files to CSS files"""
     dir_name = os.path.dirname(output_file)
@@ -30,14 +31,14 @@ def compile_sass(input_file, output_file):
 
 
 if __name__ == '__main__':
-    
+
     # Read settings from json file.
-    with open('./cv.json','r+') as setting_file:
+    with open('./cv.json', 'r+') as setting_file:
         settings = json.load(setting_file)
 
     # Compile SASS files to CSS.
     compile_sass(TEMPLATE_DIR + 'style.sass', COMPILED_DIR + 'style.css')
-    
+
     # Convert pug files to one html file
     with open(COMPILED_DIR + 'cv.html', 'w+') as file:
         template = ENV.get_template('cv.pug')
