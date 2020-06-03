@@ -35,6 +35,13 @@ while True:
         memory[memory_index] = ord(sys.stdin.read(1))
     elif byte == '[':
         open_brackets += 1
+        if memory[memory_index] == 0:
+            while  open_brackets > 0:
+                byte = file.read(1)
+                if byte == ']':
+                    open_brackets -= 1
+                else:
+                    index += 1
     elif byte == ']':
         while index > 0 and open_brackets > 0:
             index -= 1
@@ -47,14 +54,8 @@ while True:
         file.seek(index-1, os.SEEK_SET)
         index -= 1
 
+
     else:
         continue
-    if memory[memory_index] == 0 and open_brackets > 0:
-        while open_brackets > 0:
-            byte = file.read(1)
-            if byte == ']':
-                open_brackets -= 1
-            else:
-                index += 1
-
 print()
+print(memory)
