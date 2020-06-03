@@ -1,0 +1,19 @@
+!!! 5
+html(lang="en")
+    head
+
+        //- Add meta.
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        
+        //- Add css
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+
+        link(rel="stylesheet" href="style.css")
+    body 
+
+        .full-100
+            .grid-item.marked
+                include sidebar.pug
+            .grid-item.main
+                include main.pug

@@ -1,0 +1,19 @@
+h1.capitilized {{ full_name }}
+
+
+if subjects
+    for subject in subjects
+        hr.mt-5 
+        .subject-title
+            i(class="fa fa-{{ subject.icon }}")
+            h2.text-highlight= subject.title
+        .line
+            for item in subject.objects
+                .subject-item
+                    .time
+                        span.duration= item.duration
+                        .circle
+                    .text
+                        h3= item.title
+                        span= item.location
+                        p= item.description
