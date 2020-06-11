@@ -2,6 +2,12 @@
 Fully writen out version of:
 https://www.tensorflow.org/tutorials/quickstart/beginner
 """
+# Disable the terrible logs
+import os
+
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+
+
 import tensorflow as tf
 
 from tensorflow.keras.layers import Flatten, Dense, Dropout
@@ -39,3 +45,25 @@ model = tf.keras.models.Sequential(
         Dense(10),
     ]
 )
+
+"""
+Computes the crossentropy loss between the labels and predictions.
+"""
+loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
+
+""" 
+Set the model to minimize loss.
+Use the Adam optimizer.
+"""
+model.compile(optimizer="adam", loss=loss_fn, metrics=["accuracy"])
+
+"""
+Train with X and Y data
+Give the model 5 epochs
+"""
+model.fit(x_train, y_train, epochs=5)
+
+"""
+Test our model with our test data
+"""
+model.evaluate(x_test, y_test, verbose=2)
