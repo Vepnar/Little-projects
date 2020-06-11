@@ -9,10 +9,13 @@ import os
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
-from tensorflow.keras.layers import Flatten, Dense, Dropout
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
+
 import tensorflow as tf
 import numpy as np
 import pathlib
+from time import sleep
 
 """
 Download a flower dataset and extract it
@@ -34,9 +37,10 @@ CLASS_NAMES = np.array(
 image_count = len(list(data_dir.glob("*/*.jpg")))
 
 # Settings
-BATCH_SIZE = 32
-IMG_HEIGHT = 224
-IMG_WIDTH = 224
+BATCH_SIZE = 1
+IMG_HEIGHT = 20
+IMG_WIDTH = 20
+EPOCHS = 5
 STEPS_PER_EPOCH = np.ceil(image_count / BATCH_SIZE)
 
 # Rescale images from 8 bit to 1 bit
@@ -78,77 +82,32 @@ def process_path(file_path):
     img = decode_img(img)
     return img, label
 
-
-def prepare_for_training(ds, cache=True, shuffle_buffer_size=1000):
-    # This is a small dataset, only load it once, and keep it in memory.
-    # use `.cache(filename)` to cache preprocessing work for datasets that don't
-    # fit in memory.
-    if cache:
-        if isinstance(cache, str):
-            ds = ds.cache(cache)
-        else:
-            ds = ds.cache()
-
-    ds = ds.shuffle(buffer_size=shuffle_buffer_size)
-
-    # Repeat forever
-    ds = ds.repeat()
-
-    ds = ds.batch(BATCH_SIZE)
-
-    # `prefetch` lets the dataset fetch batches in the background while the model
-    # is training.
-    ds = ds.prefetch(buffer_size=AUTOTUNE)
-
-    return ds
-
-
-def show_batch(image_batch, label_batch):
-    from PIL import Image
-    import numpy as np
-    import matplotlib.pyplot as plt
-
-    plt.figure(figsize=(10, 10))
-    for n in range(25):
-        ax = plt.subplot(5, 5, n + 1)
-        plt.imshow(image_batch[n])
-        plt.title(CLASS_NAMES[label_batch[n] == 1][0].title())
-        plt.axis("off")
-    plt.show()
-
-
-# Set `num_parallel_calls` so multiple images are loaded/processed in parallel.
-labeled_ds = list_ds.map(process_path, num_parallel_calls=AUTOTUNE)
-train_ds = prepare_for_training(labeled_ds)
 ################### TRAINING
 
+model_new = Sequential([
+    Conv2D(16, 3, padding='same', activation='relu', 
+           input_shape=(IMG_HEIGHT, IMG_WIDTH ,3)),
+    MaxPooling2D(),
+    Dropout(0.2),
+    Conv2D(32, 3, padding='same', activation='relu'),
+    MaxPooling2D(),
+    Conv2D(64, 3, padding='same', activation='relu'),
+    MaxPooling2D(),
+    Dropout(0.2),
+    Flatten(),
+    Dense(255, activation='relu'),
+    Dense(1)
+])
 
-model = tf.keras.models.Sequential(
-    [
-        Flatten(input_shape=(244, 244)),
-        Dense(64, activation="relu"),
-        Dropout(0.2),
-        Dense(10),
-    ]
+model_new.compile(optimizer='adam',
+                  loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
+                  metrics=['accuracy'])
+
+model_new.summary()
+
+history = model_new.fit(
+    train_data_gen,
+    steps_per_epoch=STEPS_PER_EPOCH,
+    epochs=EPOCHS,
+
 )
-
-"""
-Computes the crossentropy loss between the labels and predictions.
-"""
-loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
-
-""" 
-Set the model to minimize loss.
-Use the Adam optimizer.
-"""
-model.compile(optimizer="adam", loss=loss_fn, metrics=["accuracy"])
-
-"""
-Train with X and Y data
-Give the model 5 epochs
-"""
-model.fit(train_ds, labeled_ds, epochs=5)
-
-"""
-Test our model with our test data
-"""
